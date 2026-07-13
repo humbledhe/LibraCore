@@ -1,0 +1,33 @@
+# ==========================
+# Backend (Python/FastAPI)
+# ==========================
+
+# Virtual environment
+backend/.venv/
+
+# Environment variables
+backend/.env
+
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# ==========================
+# Frontend (React/Vite)
+# ==========================
+
+lms-frontend/node_modules/
+lms-frontend/dist/
+
+# ==========================
+# Logs
+# ==========================
+
+*.log
+
+# ==========================
+# OS files
+# ==========================
+
+.DS_Store
+Thumbs.db

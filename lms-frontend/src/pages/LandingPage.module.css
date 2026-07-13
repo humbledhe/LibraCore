@@ -1,0 +1,246 @@
+.header {
+    text-align: center;
+    background: radial-gradient(#121E36, #202022);
+    color: white;
+}
+
+.color {
+    color: orange;
+}
+
+.welcome {
+    font-size: 75px;
+}
+
+.description {
+    width: 75%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 30px;
+}
+
+.form {
+    padding-top: 75px;
+}
+
+.input {
+    padding: 27px 35px 25px 25px;
+    width: 70%;
+    border: 1px solid grey;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    font-size: 40px;
+}
+
+.input::placeholder {
+    font-size: 28px;
+    padding-left: 40px;
+}
+
+.btn {
+    padding: 40px 40px 31px 40px;
+    background: #ffa500e3;
+    color: white;
+    font-size: 25px;
+    border: 1px solid grey;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.alert {
+    font-size: 35px;
+    border: 1px solid gold;
+    width: 75%;
+    margin: 0 auto;
+    padding: 15px 0;
+    border-radius: 40px;
+    color: gold;
+}
+
+.choices {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 26px;
+    margin-top: 70px;
+}
+
+.choice {
+    border: 1px solid grey;
+    padding: 20px 30px;
+    color: grey;
+    border-radius: 40px;
+    margin-bottom: 150px;
+}
+
+.section{
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    margin-top: 150px;
+}
+
+.featured {
+    font-size: 60px;
+}
+
+.shelvesCatalog {
+    color: orange;
+}
+
+.main {
+    padding-left: 30px;
+    padding-right: 30px
+}
+
+.bookCover {
+    width: 100px;
+    height: 150px;
+}
+
+.bookList {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 40px;
+    border: 1px solid #ECECEC;
+    padding: 35px 0 35px 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.bookName {
+    font-weight: bold;
+    font-size: 38px;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.author {
+    color: grey;
+    font-size: 25px;
+    list-height: 2px;
+    margin-top: 0;
+}
+
+.joinUs {
+    border: 1px solid black;
+    padding: 10px 0 70px 80px;
+    margin-bottom: 60px;
+    background: linear-gradient(to left, #102A52, #181831);
+}
+
+.ask {
+    font-weight: bold;
+    font-size: 45px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.createAccount {
+    font-size: 30px;
+    margin-top: 0;
+    color: grey;
+    margin-bottom: 70px;
+}
+
+.signUp, .signIn {
+    text-decoration: none;
+    font-size: 35px;
+}
+
+.signIn {
+    padding: 20px 40px;
+    color: black;
+    border: 1px solid black;
+    margin-right: 30px;
+    border-radius: 20px;
+    color: white;
+}
+
+.signUp {
+    color: black;
+    border: 1px solid black;
+    padding: 20px 40px;
+    border-radius: 20px;
+    background: #ffa500ce;
+    font-weight: bold;
+}
+
+.sectionEnding {
+    background: #F1EFE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gettingStarted {
+    color: orange;
+    padding-top: 20px;
+    font-size: 25px;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+}
+
+.imgs {
+    padding-top: 80px;
+}
+
+.borrowBook {
+    font-size: 45px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+
+.accountCreate {
+    font-size: 40px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.accountSignup {
+    color: grey;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+.div1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    width: 90%;
+    border-radius: 30px;
+    margin-bottom: 60px;
+}
+
+.footerStyles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #181828;
+    color: grey;
+    font-size: 25px;
+}
+
+.footerNav {
+    list-style-type: none;
+    display: flex;
+    gap: 1.5em;
+}
+
+.footerLink {
+    text-decoration: none;
+    color: grey;
+}
+
+.footerHeader {
+    color: #ffffff;
+}
+
+.footerPartHeader {
+    color: orange;
+}

@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+}
+
+.list{
+    display: flex;
+    gap: 25px;
+    list-style-type: none;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.btn {
+    border: 1px solid;
+    padding: 4px 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.color {
+    color: orange;
+}
