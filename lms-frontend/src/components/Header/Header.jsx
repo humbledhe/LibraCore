@@ -1,19 +1,45 @@
-import { Link } from 'react-router-dom';
-
-import styles from './Header.module.css';
+import { Link } from "react-router-dom";
 
 function Header() {
     return (
-        <header className={styles.header}>
-            <h1>Libra<span className={styles.color}>Core</span></h1>
+        <header className="flex justify-around items-center text-3xl mb-8">
+            <h1 className="text-6xl font-bold">
+                Libra<span className="text-amber-500">Core</span>
+            </h1>
             <nav>
-                <ul className={styles.list}>
-                    <li><Link to="/catalog" className={styles.link}>Catalog</Link></li>
-                    <li><Link to="/about" className={styles.link}>About</Link></li>
-                    <li><Link to="/about" className={styles.link}>Contact</Link></li>
+                <ul className="flex list-none gap-[25px]">
+                    <li>
+                        <Link
+                            to="/catalog"
+                            className="no-underline text-[#111827]"
+                        >
+                            Catalog
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/about"
+                            className="no-underline text-[#111827]"
+                        >
+                            About
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/about"
+                            className="no-underline text-[#111827]"
+                        >
+                            Contact
+                        </Link>
+                    </li>
                 </ul>
             </nav>
-            <Link to="/signin" className={styles.btn}>Sign In</Link>
+            <Link
+                to="/signin"
+                className="no-underline text-[#111827] rounded-xl py-1 px-2 border"
+            >
+                Sign In
+            </Link>
         </header>
     );
 }
