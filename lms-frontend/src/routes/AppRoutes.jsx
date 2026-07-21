@@ -1,11 +1,11 @@
 // Third Party
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Local Modules
-import LandingPage from '../pages/LandingPage.jsx';
-import CreateAccount from '../pages/CreateAccount.jsx';
-import SignIn from '../pages/SignIn';
+import LandingPage from "../pages/LandingPage.jsx";
+import CreateAccount from "../pages/CreateAccount.jsx";
+import SignIn from "../pages/SignIn";
 
-function AppRoutes() {
+function AppRoutes(props) {
     return (
         <BrowserRouter>
             <Routes>
@@ -14,7 +14,7 @@ function AppRoutes() {
                 <Route path="/signin" element={<SignIn />} />
             </Routes>
         </BrowserRouter>
-    )
+    );
 }
 
 export default AppRoutes;

@@ -1,19 +1,67 @@
 // Third Party
 import { Link } from "react-router-dom";
-// import { useEffect } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 // Local modules
-import Header from "../components/Header/Header.jsx";
-import bookicon from "../assets/bookicon.png";
-import person from "../assets/person.jpeg";
-import search from "../assets/search.jpeg";
-import book from "../assets/book.jpeg";
+import Header from "../components/Header.jsx";
+import BookShelf from "../components/BookShelf.jsx";
+import person from "../assets/person.png";
+import searchBook from "../assets/searchBook.png";
+import reserveBook from "../assets/reserveBook.png";
 
-function LandingPage() {
+export default function LandingPage() {
+    const [query, setQuery] = useState("");
+    const [books, setBooks] = useState([]);
+    const [showResults, setShowResults] = useState(false);
+    const [_, setClearSearch] = useState(false);
+    const [toggleBookShelf, setToggleBookShelf] = useState(true);
+
+    useEffect(() => {
+        const delayDebounce = setTimeout(async () => {
+            if (!query.trim()) return;
+
+            if (query.length > 0) {
+                try {
+                    const response = await axios.get(
+                        "http://127.0.0.1:8000/books/search",
+                        {
+                            params: {
+                                q: query
+                            }
+                        }
+                    );
+
+                    if (response.status === 200) {
+                        setBooks(response.data);
+                    }
+                } catch (error) {
+                    console.error(error.response);
+                }
+            }
+        }, 500);
+
+        return () => clearTimeout(delayDebounce);
+    }, [query]);
+
+    const results = () => {
+        !showResults ? setShowResults(true) : setShowResults(false);
+        setToggleBookShelf(true);
+        setClearSearch(false);
+    };
+
+    const clearResults = () => {
+        setQuery("");
+        setToggleBookShelf(false);
+        setClearSearch(true);
+        setShowResults(false);
+        setBooks([]);
+    };
+
     return (
         <>
             <Header />
 
-            <header className="text-[#ffffff] bg-radial from-[#121E36] to-[#202022] flex flex-col items-center">
+            <header className="relative text-[#ffffff] bg-radial from-[#121E36] to-[#202022] flex flex-col items-center">
                 <h1 className="text-[75px] mt-[150px] mb-[8px]">
                     Welcome to Libra
                     <span className="text-amber-500 font-bold">Core</span>
@@ -22,22 +70,49 @@ function LandingPage() {
                     Browse thousands of books, reserve a copy, and track your
                     loans -- all online. No late-night guesswork.
                 </p>
-                <form className="pt-[75px] w-[85%]">
+                <div className="pt-[75px] w-[85%]">
                     <div className="flex w-full">
                         <input
                             type="search"
+                            value={query}
+                            onChange={e => setQuery(e.target.value)}
                             placeholder="Search by title, author or genre..."
-                            className="flex-1 text-[16px] border border[#808080] pt-[27px] pr-[35px] pb-[25px] pl-[25px] rounded-l-[20px] placeholder:pl-[40px] text-[28px]"
+                            className="flex-1 text-[16px] border border[#808080] pt-[27px] pr-[35px] pb-[25px] pl-[25px] rounded-[20px] placeholder:pl-[40px] text-[28px]"
                         />
-
-                        <button
-                            type="submit"
-                            className="px-[40px] pt-[40px] pb-[31px] text-[#ffffff] bg-[#ffa500e3] text-[25px] border border-[#808080] rounded-r-[20px]"
-                        >
-                            Search
-                        </button>
                     </div>
-                </form>
+                    {query.trim() !== "" &&
+                        books.length > 0 &&
+                        !showResults && (
+                            <div
+                                key={books[0].id}
+                                className="absolute z-100 top-[35em] border border-white w-[85%] bg-white pt-[2em] pb-[7em] text-black rounded-[20px] shadow-lg overflow-hidden"
+                            >
+                                <div className="flex items-center gap-[20px] flex-start mt-0">
+                                    <img
+                                        src={books[0].image_links}
+                                        alt="thumbnail"
+                                        className="w-[100px] h-[150px] rounded-[20px] ml-[3em]"
+                                    />
+
+                                    <div>
+                                        <p className="text-3xl font-bold">
+                                            {books[0].title}
+                                        </p>
+                                        <p className="text-[#808080] text-2xl">
+                                            {books[0].authors}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p
+                                    onClick={results}
+                                    className="absolute z-100 bg-[#E8E2D7] text-[#C58A3A] text-center bottom-0 w-full rounded-bl-[20px] rounded-br-[20px] py-[0.6em] text-3xl font-bold"
+                                >
+                                    See all results for &ldquo;{query}&rdquo; →
+                                </p>
+                            </div>
+                        )}
+                </div>
 
                 <ul className="flex justify-center gap-[2em] text-[26px] mt-[70px] list-none">
                     <li className="border border-[#808080] px-[30px] py-[20px] mb-[150px] rounded-[40px] text-[#808080]">
@@ -57,65 +132,19 @@ function LandingPage() {
 
             <main className="px-[30px]">
                 <section>
-                    <div className="flex justify-between text-[25px] mt-[150px]">
-                        <p className="text-amber-500">ON THE SHELVES</p>
-                        <p className="text-amber-500">
-                            Browse full catalog &rarr;
-                        </p>
-                    </div>
-                    <h2 className="text-[60px] mt-[16px] font-bold">
-                        Featured Books
-                    </h2>
-                    <div className="flex gap-[35px] mb-[40px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-[30px] border border-[#ECECEC] py-[35px] pl-[40px]">
-                        <img className="w-[100px] h-[150px]" src={bookicon} />
-                        <div>
-                            <p className="font-bold text-[38px] mb-[15px]">
-                                The Great Gatshy
-                            </p>
-                            <p className="text-[#808080] text-[25px] leading-[2px]">
-                                F. Scott Fitzgerald
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-[35px] mb-[40px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-[30px] border border-[#ECECEC] py-[35px] pl-[40px]">
-                        <img className="w-[100px] h-[150px]" src={bookicon} />
-                        <div>
-                            <p className="font-bold text-[38px] mb-[15px]">
-                                The Great Gatshy
-                            </p>
-                            <p className="text-[#808080] text-[25px] leading-[2px]">
-                                F. Scott Fitzgerald
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-[35px] mb-[40px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-[30px] border border-[#ECECEC] py-[35px] pl-[40px]">
-                        <img className="w-[100px] h-[150px]" src={bookicon} />
-                        <div>
-                            <p className="font-bold text-[38px] mb-[15px]">
-                                The Great Gatshy
-                            </p>
-                            <p className="text-[#808080] text-[25px] leading-[2px]">
-                                F. Scott Fitzgerald
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-[35px] mb-[40px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-[30px] border border-[#ECECEC] py-[35px] pl-[40px]">
-                        <img className="w-[100px] h-[150px]" src={bookicon} />
-                        <div>
-                            <p className="font-bold text-[38px] mb-[15px]">
-                                The Great Gatshy
-                            </p>
-                            <p className="text-[#808080] text-[25px] leading-[2px]">
-                                F. Scott Fitzgerald
-                            </p>
-                        </div>
-                    </div>
+                    {showResults ? (
+                        <BookShelf
+                            isActive={toggleBookShelf}
+                            query={query}
+                            books={books}
+                            clearResults={clearResults}
+                        />
+                    ) : (
+                        <BookShelf isActive={false} />
+                    )}
                 </section>
 
-                <section className="border border-[#000000] mb-[60px] bg-linear-to-l from-[#102A52] to-[#181831] pt-[10px] pb-[70px] pl-[80px]">
+                <section className="border border-[#000000] mb-[60px] bg-linear-to-l from-[#102A52] to-[#181831] pt-[10px] pb-[70px] pl-[80px] rounded-[20px]">
                     <p className="font-bold text-[45px] mb-[20px] text-[#ffffff]">
                         Want to reserve or borrow?
                     </p>
@@ -162,7 +191,7 @@ function LandingPage() {
                     <div className="flex flex-col items-center w-[90%] bg-[#ffffff] rounded-[30px] mb-[60px]">
                         <img
                             className="pt-[80px]"
-                            src={search}
+                            src={searchBook}
                             alt="person icon"
                             width="150"
                         />
@@ -177,7 +206,7 @@ function LandingPage() {
                     <div className="flex flex-col items-center w-[90%] bg-[#ffffff] rounded-[30px] mb-[60px]">
                         <img
                             className="pt-[80px]"
-                            src={book}
+                            src={reserveBook}
                             alt="person icon"
                             width="150"
                         />
@@ -191,12 +220,12 @@ function LandingPage() {
                 </section>
             </main>
 
-            <footer className="flex flex-col items-center bg-[#181828] text-[25px] text-[$808080]">
-                <h3 className="text-[#ffffff]">
+            <footer className="flex gap-[1.5rem] flex-col items-center bg-[#181828] text-[25px] text-[#808080]">
+                <h3 className="text-[#ffffff] text-4xl font-bold">
                     Libra<span className="text-amber-500">Core</span>
                 </h3>
                 <nav>
-                    <ul className="flex gap-[1.2em] list-none">
+                    <ul className="flex gap-[1.5rem] list-none">
                         <li>
                             <Link
                                 to="catalog"
@@ -231,5 +260,3 @@ function LandingPage() {
         </>
     );
 }
-
-export default LandingPage;

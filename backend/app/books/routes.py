@@ -12,6 +12,9 @@ router = APIRouter(
     tags=["Books"]
 )
 
-@router.get("/search", response_model=list[schema.BookResponse])
-def search_book(q: str, db: Session = Depends(get_db)):
+@router.get(
+    "/search", 
+    response_model=list[schema.BookResponse]
+    )
+async def search_book(q: str, db: Session = Depends(get_db)):
     return service.search_books(q, db)
