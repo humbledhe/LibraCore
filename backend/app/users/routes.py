@@ -34,16 +34,16 @@ def get_user(db: Session = Depends(get_db)):
     
     return users
     
-@router.get("/{id}", response_model=users_schema.ShowUsers)    
-def get_user(id: int, db: Session = Depends(get_db)):
+@router.get("/{email}", response_model=users_schema.ShowUsers)    
+def get_user(email: str, db: Session = Depends(get_db)):
     # Finding a user that matches our id
-    user_query = db.query(users_model.User).filter(users_model.User.id == id)
+    user_query = db.query(users_model.User).filter(users_model.User.email == email)
     
     user = user_query.first()
     
     # Simply raise an error and update the status code if id does not exist
     if not user:
-          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Could not find a user with id: {id}")
+          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Could not find a user with email: {email}")
           
     return user_query.first()         
     

@@ -1,12 +1,15 @@
 // Third Party
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import axios from "axios";
 // Local modules
 
 function SignIn() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-        email: "",
+        username: "",
         password: ""
     });
 
@@ -17,18 +20,41 @@ function SignIn() {
         });
     };
 
+    const [userFirstName, setUserFirstName] = useState(null);
+
     const signIn = async e => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(
-                "http://127.0.0.1:8000/signin/users",
-                formData
+            const response = await axios.post(
+                "http://127.0.0.1:8000/auth/login",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    }
+                }
             );
 
-            console.log(data);
+            try {
+                const user = await axios(
+                    `http://127.0.0.1:8000/users/${formData.username}`
+                );
+
+                setUserFirstName(user.data.first_name);
+            } catch (error) {
+                console.error(error.response);
+            }
+
+            const token = response.data.access_token;
+
+            localStorage.setItem("token", token);
+
+            navigate("/dashboard");
+
+            api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         } catch (error) {
-            console.log(error.response);
+            console.error(error.response);
         }
     };
 
@@ -55,9 +81,9 @@ function SignIn() {
                         <input
                             type="email"
                             id="email"
-                            name="email"
+                            name="username"
                             required
-                            value={formData.email}
+                            value={formData.username}
                             onChange={handleChange}
                             className="text-[30px] rounded-[20px] py-[40px] pl-[35px] border border-[#808080]"
                         />
@@ -82,7 +108,7 @@ function SignIn() {
                         type="submit"
                         className="font-bold rounded-[30px] bg-black text-[#FAFBF6] w-full border-none text-[30px] mt-[50px] py-[2em] active:bg-[#000000bc] transition-colors duration-300 ease-in-out"
                     >
-                        Create account
+                        Sign In
                     </button>
                 </form>
             </main>

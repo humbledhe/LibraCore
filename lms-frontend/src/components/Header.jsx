@@ -35,7 +35,7 @@ function Header() {
                 </ul>
             </nav>
             <Link
-                to="/signin"
+                to="/login"
                 className="no-underline text-[#111827] rounded-xl py-1 px-2 border"
             >
                 Sign In

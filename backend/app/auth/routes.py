@@ -10,11 +10,11 @@ from app.core import security
 from app.core.dependencies import get_db
 
 router = APIRouter(
-    prefix="/login",
+    prefix="/auth",
     tags=["Authentication"],
 )
 
-@router.post("")
+@router.post("/login")
 def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     # Comparing if the user email match 
     user = db.query(users_model.User).filter(users_model.User.email == form_data.username).first()
@@ -32,5 +32,6 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
     # Generated after the user logins 
     return {
             "access_token": access_token, 
-            "token_type": "bearer"
+            "token_type": "Bearer"
     }
+    #return access_token

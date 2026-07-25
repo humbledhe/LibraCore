@@ -33,15 +33,10 @@ function CreateAccount() {
                 "http://127.0.0.1:8000/users",
                 formData
             );
-            console.log(response);
-            console.log(e);
         } catch (error) {
             console.log(error.response);
         }
     };
-
-    if (isChecked) console.log("toggleOn");
-    else console.log("toggleOff");
 
     return (
         <>

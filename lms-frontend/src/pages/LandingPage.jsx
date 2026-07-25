@@ -152,13 +152,13 @@ export default function LandingPage() {
                         Sign in or create a free account to get started
                     </p>
                     <Link
-                        to="signin"
+                        to="/login"
                         className="decoration-none text-[32px] py-[20px] px-[40px] text-[#ffffff] border border-[#000000] mr-[30px] rounded-[20px]"
                     >
                         Sign In
                     </Link>
                     <Link
-                        to="signup"
+                        to="/signup"
                         className="decoration-none text-[32px] text-[#000000] border border-[#000000] py-[20px] px-[40px] rounded-[20px] font-bold bg-[#ffa500ce]"
                     >
                         Join free
@@ -228,7 +228,7 @@ export default function LandingPage() {
                     <ul className="flex gap-[1.5rem] list-none">
                         <li>
                             <Link
-                                to="catalog"
+                                to="/catalog"
                                 className="decoration-none text-[#808080]"
                             >
                                 Catalog
@@ -236,7 +236,7 @@ export default function LandingPage() {
                         </li>
                         <li>
                             <Link
-                                to="about"
+                                to="/about"
                                 className="decoration-none text-[#808080]"
                             >
                                 About
@@ -247,7 +247,7 @@ export default function LandingPage() {
                         </li>
                         <li>
                             <Link
-                                to="contact"
+                                to="/contact"
                                 className="decoration-none text-[#808080]"
                             >
                                 Contact
