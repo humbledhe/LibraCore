@@ -1,10 +1,14 @@
 // Third Party
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useState, useEffect } from "react";
+
+import axios from "axios";
+
 // Local modules
+import Logo from "../components/Logo";
 import Header from "../components/Header.jsx";
 import BookShelf from "../components/BookShelf.jsx";
+
 import person from "../assets/person.png";
 import searchBook from "../assets/searchBook.png";
 import reserveBook from "../assets/reserveBook.png";
@@ -62,10 +66,9 @@ export default function LandingPage() {
             <Header />
 
             <header className="relative text-[#ffffff] bg-radial from-[#121E36] to-[#202022] flex flex-col items-center">
-                <h1 className="text-[75px] mt-[150px] mb-[8px]">
-                    Welcome to Libra
-                    <span className="text-amber-500 font-bold">Core</span>
-                </h1>
+                <span className="mt-[150px] mb-[8px]">
+                    <Logo />
+                </span>
                 <p className="text-[35px] mx-[auto] text-center w-[85%]">
                     Browse thousands of books, reserve a copy, and track your
                     loans -- all online. No late-night guesswork.
@@ -221,7 +224,7 @@ export default function LandingPage() {
             </main>
 
             <footer className="flex gap-[1.5rem] flex-col items-center bg-[#181828] text-[25px] text-[#808080]">
-                <h3 className="text-[#ffffff] text-4xl font-bold">
+                <h3 className="text-[#ffffff] text-4xl font-bold mt-8">
                     Libra<span className="text-amber-500">Core</span>
                 </h3>
                 <nav>
@@ -255,7 +258,7 @@ export default function LandingPage() {
                         </li>
                     </ul>
                 </nav>
-                <p>&copy; 2026 LibraCore Libray System, All rights reserved</p>
+                <p className="mb-8">&copy; 2026 LibraCore Libray System, All rights reserved</p>
             </footer>
         </>
     );

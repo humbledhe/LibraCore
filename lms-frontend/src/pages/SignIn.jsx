@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import axios from "axios";
 // Local modules
+import Logo from "../components/Logo";
 
 function SignIn() {
     const navigate = useNavigate();
@@ -61,9 +62,7 @@ function SignIn() {
     return (
         <>
             <header className="flex justify-between items-center text-[30px] mx-[30px] my-[50px]">
-                <h1 className="text-6xl font-bold">
-                    Libra<span className="text-amber-500">Core</span>
-                </h1>
+                <Logo />
                 <p>
                     Not a member?{" "}
                     <Link to="/signup" className="text-[#E4D9BE] font-bold">

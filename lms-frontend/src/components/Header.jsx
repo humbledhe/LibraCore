@@ -1,11 +1,13 @@
+// Third party
 import { Link } from "react-router-dom";
+
+// Local modules
+import Logo from "../components/Logo";
 
 function Header() {
     return (
-        <header className="flex justify-around items-center text-3xl mb-8">
-            <h1 className="text-6xl font-bold">
-                Libra<span className="text-amber-500">Core</span>
-            </h1>
+        <header className="flex justify-around items-center text-3xl mb-8 mt-8">
+            <Logo />
             <nav>
                 <ul className="flex list-none gap-[25px]">
                     <li>
