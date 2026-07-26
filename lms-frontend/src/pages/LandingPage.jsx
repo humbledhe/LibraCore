@@ -2,9 +2,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import axios from "axios";
+//import axios from "axios";
 
 // Local modules
+import api from "../api/axios";
+
 import Logo from "../components/Logo";
 import Header from "../components/Header.jsx";
 import BookShelf from "../components/BookShelf.jsx";
@@ -27,14 +29,11 @@ export default function LandingPage() {
 
             if (query.length > 0) {
                 try {
-                    const response = await axios.get(
-                        "http://127.0.0.1:8000/books/search",
-                        {
-                            params: {
-                                q: query
-                            }
+                    const response = await api.get("books/search", {
+                        params: {
+                            q: query
                         }
-                    );
+                    });
 
                     setBooks(response.data);
                 } catch (error) {

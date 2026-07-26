@@ -2,8 +2,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import axios from "axios";
+//import axios from "axios";
 // Local modules
+import api from "../api/axios";
+
 import Logo from "../components/Logo";
 
 function CreateAccount() {
@@ -34,10 +36,7 @@ function CreateAccount() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(
-                "http://127.0.0.1:8000/users",
-                formData
-            );
+            const response = await api.post("/users", formData);
 
             // render when status code is within range
             navigate("/signup/success/", {

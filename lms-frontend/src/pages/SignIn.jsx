@@ -2,8 +2,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import axios from "axios";
+//import axios from "axios";
 // Local modules
+import api from "../api/axios";
+
 import Logo from "../components/Logo";
 
 function SignIn() {
@@ -27,21 +29,15 @@ function SignIn() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(
-                "http://127.0.0.1:8000/auth/login",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    }
+            const response = await api.post("/auth/login", formData, {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
                 }
-            );
+            });
 
             // Automatifally get the users first name when logged in
             try {
-                const user = await axios(
-                    `http://127.0.0.1:8000/users/${formData.username}`
-                );
+                const user = await api.get(`/users/${formData.username}`);
 
                 setUserFirstName(user.data.first_name);
             } catch (error) {

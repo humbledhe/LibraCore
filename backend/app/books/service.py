@@ -5,18 +5,11 @@ from fastapi import HTTPException, status
 from app.books import repository, model
 from app.books.google_books import search_google_books
 
-
 def search_books(query: str, db):
     # start the search from our database and return if the book is found 
     query = query.strip().lower()
     
-    # books = repository.search(db, query)
     
-    # if books:
-    #     print("found from local")
-    #     return books
-    
-    # if the book is not in database, continue the search in Google books database     
     google_books = search_google_books(query)
     
     if not google_books:
