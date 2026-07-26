@@ -21,7 +21,7 @@ function SignIn() {
         });
     };
 
-    const [userFirstName, setUserFirstName] = useState(null);
+    const [_, setUserFirstName] = useState(null);
 
     const signIn = async e => {
         e.preventDefault();
@@ -37,6 +37,7 @@ function SignIn() {
                 }
             );
 
+            // Automatifally get the users first name when logged in
             try {
                 const user = await axios(
                     `http://127.0.0.1:8000/users/${formData.username}`
@@ -51,6 +52,7 @@ function SignIn() {
 
             localStorage.setItem("token", token);
 
+            // render when status code is within range
             navigate("/dashboard");
 
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

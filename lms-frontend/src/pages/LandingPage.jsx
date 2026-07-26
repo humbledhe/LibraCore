@@ -21,6 +21,7 @@ export default function LandingPage() {
     const [toggleBookShelf, setToggleBookShelf] = useState(true);
 
     useEffect(() => {
+        // when the user stops typing for x seconds, run this code
         const delayDebounce = setTimeout(async () => {
             if (!query.trim()) return;
 
@@ -35,9 +36,7 @@ export default function LandingPage() {
                         }
                     );
 
-                    if (response.status === 200) {
-                        setBooks(response.data);
-                    }
+                    setBooks(response.data);
                 } catch (error) {
                     console.error(error.response);
                 }
@@ -83,38 +82,42 @@ export default function LandingPage() {
                             className="flex-1 text-[16px] border border[#808080] pt-[27px] pr-[35px] pb-[25px] pl-[25px] rounded-[20px] placeholder:pl-[40px] text-[28px]"
                         />
                     </div>
-                    {query.trim() !== "" &&
-                        books.length > 0 &&
-                        !showResults && (
-                            <div
-                                key={books[0].id}
-                                className="absolute z-100 top-[35em] border border-white w-[85%] bg-white pt-[2em] pb-[7em] text-black rounded-[20px] shadow-lg overflow-hidden"
-                            >
-                                <div className="flex items-center gap-[20px] flex-start mt-0">
-                                    <img
-                                        src={books[0].image_links}
-                                        alt="thumbnail"
-                                        className="w-[100px] h-[150px] rounded-[20px] ml-[3em]"
-                                    />
-
-                                    <div>
-                                        <p className="text-3xl font-bold">
-                                            {books[0].title}
-                                        </p>
-                                        <p className="text-[#808080] text-2xl">
-                                            {books[0].authors}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p
-                                    onClick={results}
-                                    className="absolute z-100 bg-[#E8E2D7] text-[#C58A3A] text-center bottom-0 w-full rounded-bl-[20px] rounded-br-[20px] py-[0.6em] text-3xl font-bold"
+                    {
+                        // Displays the first instance of books on screen
+                        query.trim() !== "" &&
+                            books.length > 0 &&
+                            !showResults && (
+                                <div
+                                    key={books[0].id}
+                                    className="absolute z-100 top-[35em] border border-white w-[85%] bg-white pt-[2em] pb-[7em] text-black rounded-[20px] shadow-lg overflow-hidden"
                                 >
-                                    See all results for &ldquo;{query}&rdquo; →
-                                </p>
-                            </div>
-                        )}
+                                    <div className="flex items-center gap-[20px] flex-start mt-0">
+                                        <img
+                                            src={books[0].image_links}
+                                            alt="thumbnail"
+                                            className="w-[100px] h-[150px] rounded-[20px] ml-[3em]"
+                                        />
+
+                                        <div>
+                                            <p className="text-3xl font-bold">
+                                                {books[0].title}
+                                            </p>
+                                            <p className="text-[#808080] text-2xl">
+                                                {books[0].authors}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <p
+                                        onClick={results}
+                                        className="absolute z-100 bg-[#E8E2D7] text-[#C58A3A] text-center bottom-0 w-full rounded-bl-[20px] rounded-br-[20px] py-[0.6em] text-3xl font-bold"
+                                    >
+                                        See all results for &ldquo;{query}
+                                        &rdquo; →
+                                    </p>
+                                </div>
+                            )
+                    }
                 </div>
 
                 <ul className="flex justify-center gap-[2em] text-[26px] mt-[70px] list-none">
@@ -135,16 +138,19 @@ export default function LandingPage() {
 
             <main className="px-[30px]">
                 <section>
-                    {showResults ? (
-                        <BookShelf
-                            isActive={toggleBookShelf}
-                            query={query}
-                            books={books}
-                            clearResults={clearResults}
-                        />
-                    ) : (
-                        <BookShelf isActive={false} />
-                    )}
+                    {
+                        // Display the static books shelf when show results is false
+                        showResults ? (
+                            <BookShelf
+                                isActive={toggleBookShelf}
+                                query={query}
+                                books={books}
+                                clearResults={clearResults}
+                            />
+                        ) : (
+                            <BookShelf isActive={false} />
+                        )
+                    }
                 </section>
 
                 <section className="border border-[#000000] mb-[60px] bg-linear-to-l from-[#102A52] to-[#181831] pt-[10px] pb-[70px] pl-[80px] rounded-[20px]">
@@ -258,7 +264,9 @@ export default function LandingPage() {
                         </li>
                     </ul>
                 </nav>
-                <p className="mb-8">&copy; 2026 LibraCore Libray System, All rights reserved</p>
+                <p className="mb-8">
+                    &copy; 2026 LibraCore Libray System, All rights reserved
+                </p>
             </footer>
         </>
     );

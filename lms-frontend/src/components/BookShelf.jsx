@@ -1,36 +1,37 @@
-import bookicon from "../assets/bookicon.png";
+// Local modules
+import bookicon from "../assets/bookicon";
+
+const staticBooks = [
+    {
+        id: 1,
+        title: "The great gatsby",
+        author: "F. Scott Fitzgerald",
+        bookIcon: bookicon
+    },
+    {
+        id: 2,
+        title: "Atomic Habits",
+        author: "james clear",
+        bookIcon: bookicon
+    },
+    {
+        id: 3,
+        title: "Harry Potter",
+        author: "JK. Rowling",
+        bookIcon: bookicon
+    },
+    {
+        id: 4,
+        title: "Dune",
+        author: "Frank Herbert",
+        bookIcon: bookicon
+    }
+];
 
 export default function BookShelf({ isActive, query, books, clearResults }) {
-    const staticBooks = [
-        {
-            id: 1,
-            title: "The great gatsby",
-            author: "F. Scott Fitzgerald",
-            bookIcon: bookicon
-        },
-        {
-            id: 2,
-            title: "Atomic Habits",
-            author: "james clear",
-            bookIcon: bookicon
-        },
-        {
-            id: 3,
-            title: "Harry Potter",
-            author: "JK. Rowling",
-            bookIcon: bookicon
-        },
-        {
-            id: 4,
-            title: "Dune",
-            author: "Frank Herbert",
-            bookIcon: bookicon
-        }
-    ];
-
     return (
         <section>
-            {!isActive ? (
+            {!isActive ? ( // Displays data when show results is clicked
                 <>
                     <div className="flex justify-between text-[25px] mt-[150px]">
                         <p className="text-amber-500">ON THE SHELVES</p>
@@ -64,6 +65,7 @@ export default function BookShelf({ isActive, query, books, clearResults }) {
                     </div>{" "}
                 </>
             ) : (
+                // Default data when show results is not clicked
                 <div className="mt-[6em]">
                     <h1 className="text-5xl font-bold">
                         Results for &ldquo;{query}&rdquo;

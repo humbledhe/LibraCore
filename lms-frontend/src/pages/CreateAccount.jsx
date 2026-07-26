@@ -39,6 +39,7 @@ function CreateAccount() {
                 formData
             );
 
+            // render when status code is within range
             navigate("/signup/success/", {
                 state: { signUpSuccess: true }
             });
