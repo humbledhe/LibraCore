@@ -1,12 +1,12 @@
 // Third Party
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Local Modules
-import ProtectedRoutes from "./ProtectedRoutes";
-import SignUpSuccess from "./SignUpSuccess";
-import LandingPage from "../pages/LandingPage";
-import CreateAccount from "../pages/CreateAccount";
-import SignIn from "../pages/SignIn";
-import Dashboard from "../pages/Dashboard";
+import ProtectedRoutes from "./ProtectedRoutes.jsx";
+import SignUpSuccess from "./SignUpSuccess.jsx";
+import LandingPage from "../pages/LandingPage.jsx";
+import CreateAccount from "../pages/CreateAccount.jsx";
+import SignIn from "../pages/SignIn.jsx";
+import Dashboard from "../pages/Dashboard.jsx";
 
 function AppRoutes() {
     return (

@@ -6,7 +6,7 @@ import { useState } from "react";
 // Local modules
 import api from "../api/axios";
 
-import Logo from "../components/Logo";
+import Logo from "../components/Logo.jsx";
 
 function SignIn() {
     const navigate = useNavigate();

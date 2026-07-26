@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 // Local modules
-import Logo from "../components/Logo";
+import Logo from "../components/Logo.jsx";
 
 function Header() {
     return (

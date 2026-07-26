@@ -6,7 +6,7 @@ import { useState } from "react";
 // Local modules
 import api from "../api/axios";
 
-import Logo from "../components/Logo";
+import Logo from "../components/Logo.jsx";
 
 function CreateAccount() {
     const navigate = useNavigate();
@@ -53,7 +53,7 @@ function CreateAccount() {
                 <Logo />
                 <p>
                     Already a member?{" "}
-                    <Link to="/signin" className="text-[#E4D9BE] font-bold">
+                    <Link to="/login" className="text-[#E4D9BE] font-bold">
                         <span>Sign In</span>
                     </Link>
                 </p>
