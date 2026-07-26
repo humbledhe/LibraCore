@@ -15,7 +15,6 @@ function SignIn() {
         username: "",
         password: ""
     });
-
     const handleChange = e => {
         setFormData({
             ...formData,
@@ -23,10 +22,15 @@ function SignIn() {
         });
     };
 
-    const [_, setUserFirstName] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const [userFirstName, setUserFirstName] = useState(null);
+    const [error, setError] = useState(null);
 
     const signIn = async e => {
         e.preventDefault();
+
+        setLoading(true);
 
         try {
             const response = await api.post("/auth/login", formData, {
@@ -36,13 +40,8 @@ function SignIn() {
             });
 
             // Automatifally get the users first name when logged in
-            try {
-                const user = await api.get(`/users/${formData.username}`);
-
-                setUserFirstName(user.data.first_name);
-            } catch (error) {
-                console.error(error.response);
-            }
+            const user = await api.get(`/users/${formData.username}`);
+            setUserFirstName(user.data.first_name);
 
             const token = response.data.access_token;
 
@@ -52,8 +51,10 @@ function SignIn() {
             navigate("/dashboard");
 
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        } catch (error) {
-            console.error(error.response);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -105,7 +106,7 @@ function SignIn() {
                         type="submit"
                         className="font-bold rounded-[30px] bg-black text-[#FAFBF6] w-full border-none text-[30px] mt-[50px] py-[2em] active:bg-[#000000bc] transition-colors duration-300 ease-in-out"
                     >
-                        Sign In
+                        {!loading ? "Sign In" : "loading..."}
                     </button>
                 </form>
             </main>

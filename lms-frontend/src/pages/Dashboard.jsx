@@ -17,7 +17,7 @@ export default function Dashboard() {
         <>
             <header className="bg-gradient-to-br from-[#1a1b30] via-[#16304f] to-[#12284a]">
                 <div className="ml-[2em] pt-[3em] pb-[10em]">
-                    <p className="text-[#A2A5AF] text-2xl">Good morning,</p>
+                    <p className="text-[#A2A5AF] text-2xl">Welcome,</p>
                     <div className="flex items-center">
                         <h1 className="text-white text-4xl">Ada Okafor</h1>
                         <img className="w-[70px]" src={icon} alt="hello" />

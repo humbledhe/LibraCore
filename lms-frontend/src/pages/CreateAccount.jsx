@@ -17,9 +17,6 @@ function CreateAccount() {
         email: "",
         password: ""
     });
-
-    let [isChecked, setIsChecked] = useState(false);
-
     const handleChange = e => {
         setFormData({
             ...formData,
@@ -27,13 +24,15 @@ function CreateAccount() {
         });
     };
 
-    function handleCheck() {
-        if (isChecked === false) setIsChecked((isChecked = true));
-        else setIsChecked((isChecked = false));
-    }
+    const [isChecked, setIsChecked] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const [error, setError] = useState(null);
 
     const createAccount = async e => {
         e.preventDefault();
+
+        setLoading(true);
 
         try {
             const response = await api.post("/users", formData);
@@ -42,8 +41,10 @@ function CreateAccount() {
             navigate("/signup/success/", {
                 state: { signUpSuccess: true }
             });
-        } catch (error) {
-            console.log(error.response);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -133,7 +134,8 @@ function CreateAccount() {
                             type="checkbox"
                             id="checkbox"
                             name="checkbox"
-                            onClick={handleCheck}
+                            value={isChecked}
+                            onClick={() => setIsChecked(!isChecked)}
                             className="scale-200"
                         />
                         <label type="checkbox">
@@ -151,9 +153,9 @@ function CreateAccount() {
                     <button
                         type="submit"
                         disabled={!isChecked}
-                        className={`font-bold rounded-[30px] font-bold bg-[#EAD9B0] text-[#FAFBF6] w-full border-none text-[30px] mt-[50px] py-[2em] ${isChecked === true ? "bg-[black] active:bg-[#000000bc] transition-colors duration-300 ease-in-out border-none" : ""}`}
+                        className={`font-bold rounded-[30px] font-bold bg-[#EAD9B0] text-[#FAFBF6] w-full border-none text-[30px] mt-[50px] py-[2em] ${isChecked ? "bg-[black] active:bg-[#000000bc] transition-colors duration-300 ease-in-out border-none" : ""}`}
                     >
-                        Create account
+                        {!loading ? "Create account" : "loading..."}
                     </button>
                 </form>
             </main>

@@ -1,4 +1,5 @@
 // Third Party
+// Third Party
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -16,16 +17,25 @@ import searchBook from "../assets/searchBook.png";
 import reserveBook from "../assets/reserveBook.png";
 
 export default function LandingPage() {
-    const [query, setQuery] = useState("");
-    const [books, setBooks] = useState([]);
     const [showResults, setShowResults] = useState(false);
-    const [_, setClearSearch] = useState(false);
-    const [toggleBookShelf, setToggleBookShelf] = useState(true);
+    const [clearSearch, setClearSearch] = useState(false);
+    const [toggleBookShelf, setToggleBookShelf] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const [error, setError] = useState(null);
+
+    const [query, setQuery] = useState("");
+
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
+        setError(null); // clear error before fetching
+
         // when the user stops typing for x seconds, run this code
         const delayDebounce = setTimeout(async () => {
             if (!query.trim()) return;
+
+            setLoading(true);
 
             if (query.length > 0) {
                 try {
@@ -36,8 +46,10 @@ export default function LandingPage() {
                     });
 
                     setBooks(response.data);
-                } catch (error) {
-                    console.error(error.response);
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
                 }
             }
         }, 500);
@@ -46,15 +58,15 @@ export default function LandingPage() {
     }, [query]);
 
     const results = () => {
-        !showResults ? setShowResults(true) : setShowResults(false);
+        setShowResults(true);
         setToggleBookShelf(true);
-        setClearSearch(false);
+        setClearSearch(clearSearch);
     };
 
     const clearResults = () => {
         setQuery("");
         setToggleBookShelf(false);
-        setClearSearch(true);
+        setClearSearch(!clearSearch);
         setShowResults(false);
         setBooks([]);
     };
@@ -82,8 +94,16 @@ export default function LandingPage() {
                         />
                     </div>
                     {
-                        // Displays the first instance of books on screen
-                        query.trim() !== "" &&
+                        // Displays the first instance of books on screen, if book exists
+                        error && error.response?.status === 404 && query ? (
+                            <div className="absolute z-100 top-[35em] border border-white w-[85%] bg-white py-[3em] rounded-[20px] shadow-lg overflow-hidden">
+                                <p className="text-[#808080] text-center text-2xl">
+                                    No search results for{" "}
+                                    <span className="font-bold">{`"${query}"`}</span>
+                                </p>
+                            </div>
+                        ) : (
+                            query.trim() !== "" &&
                             books.length > 0 &&
                             !showResults && (
                                 <div
@@ -116,6 +136,7 @@ export default function LandingPage() {
                                     </p>
                                 </div>
                             )
+                        )
                     }
                 </div>
 
@@ -141,7 +162,7 @@ export default function LandingPage() {
                         // Display the static books shelf when show results is false
                         showResults ? (
                             <BookShelf
-                                isActive={toggleBookShelf}
+                                isActive={true}
                                 query={query}
                                 books={books}
                                 clearResults={clearResults}

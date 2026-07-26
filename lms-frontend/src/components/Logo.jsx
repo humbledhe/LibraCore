@@ -1,8 +1,13 @@
+// Third Party
+import { Link } from "react-router-dom";
+
 const Logo = () => {
     return (
-        <h1 className="text-6xl font-bold">
-            Libra<span className="text-amber-500">Core</span>
-        </h1>
+        <Link to="/">
+            <h1 className="text-6xl font-bold">
+                Libra<span className="text-amber-500">Core</span>
+            </h1>
+        </Link>
     );
 };
 
