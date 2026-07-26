@@ -1,5 +1,5 @@
 // Local modules
-import bookicon from "../assets/bookicon";
+import bookicon from "../assets/bookicon.png";
 
 const staticBooks = [
     {
