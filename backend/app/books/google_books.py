@@ -1,6 +1,8 @@
 # Third Party
 import requests
 import time
+
+from fastapi import HTTPException, status
 # Local modules
 from app.core.config import settings
 
@@ -25,14 +27,19 @@ def search_google_books(query):
                 time.sleep(0.5)
                 continue
             break
-    
-        if response.status_code != 200:
-            return response
-            
-        data = response.json()
-        
-        return data.get("items", []) 
 
-    except requests.RequestException as e:
-        print("Google Books error:", e)
-        return []                    
+        response.raise_for_status()
+
+        data = response.json()
+
+        items = data.get("items")
+        
+        if not items:
+            raise HTTPException(status_code=404, detail=f"No search results for '{query}'")
+        
+        return items
+
+    except requests.exceptions.ConnectionError:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Unable to connect to the external service") 
+    # except requests.exceptions.HTTPError:
+    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
