@@ -1,11 +1,10 @@
 # Third party
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Any
 # Local modules
-from app.books import model as books_model
-from app.core.dependencies import get_db
-from app.books import service, schema
+from app.books.service import search_books
+from app.books.schema import  BookResponse
 
 router = APIRouter(
     prefix="/books",
@@ -14,7 +13,9 @@ router = APIRouter(
 
 @router.get(
     "/search", 
-    response_model=list[schema.BookResponse]
+    response_model=list[BookResponse],
+    response_model_exclude_defaults=True
     )
-async def search_book(q: str, db: Session = Depends(get_db)):
-    return service.search_books(q, db)
+async def search_book(q: str) -> Any:
+    return search_books(q)
+

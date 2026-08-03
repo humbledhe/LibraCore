@@ -15,16 +15,16 @@ router = APIRouter(
 )
 
 @router.post("/login")
-def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)) -> dict[str, str]:
     # Comparing if the user email match 
     user = db.query(users_model.User).filter(users_model.User.email == form_data.username).first()
     
     if not user:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid user credentials")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid user credentials")
     
     # re-hashing the user password to check if the previously hashed password match 
     if not security.verify(form_data.password, user.password):
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid user credentials")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid user credentials")
     
     # Storing the user_id in the payload    
     access_token = security.create_access_token(data={"user_id": user.id})    
