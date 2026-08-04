@@ -33,30 +33,25 @@ export default function BookShelf({ isActive, query, books, clearResults }) {
         <section>
             {!isActive ? ( // Displays data when show results is clicked
                 <>
-                    <div className="flex justify-between text-[25px] mt-[150px]">
+                    <div className="flex justify-between text-xs mt-32">
                         <p className="text-amber-500">ON THE SHELVES</p>
                         <p className="text-amber-500">
                             Browse full catalog &rarr;
                         </p>
                     </div>
-                    <h2 className="text-[60px] mt-[16px] font-bold">
-                        Featured Books
-                    </h2>
+                    <h2 className="text-base mt-4 font-bold">Featured Books</h2>
                     <div>
                         {staticBooks.map(book => (
                             <div
                                 key={book.id}
-                                className="flex gap-[35px] mb-[40px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-[30px] border border-[#ECECEC] py-[35px] pl-[40px]"
+                                className="flex gap-8 mb-9 shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-xl border border-[#ECECEC] py-8 pl-9"
                             >
-                                <img
-                                    className="w-[100px] h-[150px]"
-                                    src={book.bookIcon}
-                                />
+                                <img className="w-12" src={book.bookIcon} />
                                 <div>
-                                    <p className="font-bold text-[38px] mb-[15px]">
+                                    <p className="font-bold text-base mb-4">
                                         {book.title}
                                     </p>
-                                    <p className="text-[#808080] text-[25px] leading-[2px]">
+                                    <p className="text-[#808080] text-xm leading-2">
                                         {book.author}
                                     </p>
                                 </div>

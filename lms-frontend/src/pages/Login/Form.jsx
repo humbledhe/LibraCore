@@ -56,10 +56,10 @@ const Form = () => {
     };
 
     return (
-        <main className="mx-[30px]">
+        <main className="mx-4">
             <form onSubmit={signIn}>
-                <div className="flex flex-col gap-[16px] mb-[48px]">
-                    <label for="email" className="text-[30px] font-bold">
+                <div className="flex flex-col gap-4 mb-7">
+                    <label for="email" className="text-sm font-bold">
                         Email
                     </label>
                     <input
@@ -69,12 +69,12 @@ const Form = () => {
                         required
                         value={formData.username}
                         onChange={handleChange}
-                        className="text-[30px] rounded-[20px] py-[40px] pl-[35px] border border-[#808080]"
+                        className="text-sm py-3 pl-8 border border-grey-500 rounded-xl"
                     />
                 </div>
 
-                <div className="flex flex-col gap-[16px] mb-[48px]">
-                    <label for="password" className="text-[30px] font-bold">
+                <div className="flex flex-col gap-4 mb-7">
+                    <label for="password" className="text-sm font-bold">
                         Password
                     </label>
                     <input
@@ -84,13 +84,13 @@ const Form = () => {
                         required
                         value={formData.password}
                         onChange={handleChange}
-                        className="text-[30px] rounded-[20px] py-[40px] pl-[35px] border border-[#808080]"
+                        className="text-sm py-3 pl-8 border border-grey-500 rounded-xl"
                     />
                 </div>
 
                 <button
                     type="submit"
-                    className="font-bold rounded-[30px] bg-black text-[#FAFBF6] w-full border-none text-[30px] mt-[50px] py-[2em] active:bg-[#000000bc] transition-colors duration-300 ease-in-out"
+                    className="font-bold rounded-xl bg-black text-[#FAFBF6] w-full border-none text-sm mt-4 py-4 active:bg-[#000000bc] transition-colors duration-300 ease-in-out"
                 >
                     {!loading ? "Sign In" : "loading..."}
                 </button>

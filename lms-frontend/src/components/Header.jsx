@@ -6,10 +6,10 @@ import Logo from "../components/Logo.jsx";
 
 function Header() {
     return (
-        <header className="flex justify-around items-center text-3xl mb-8 mt-8">
+        <header className="flex justify-around items-center text-sm my-8">
             <Logo />
             <nav>
-                <ul className="flex list-none gap-[25px]">
+                <ul className="flex list-none gap-4">
                     <li>
                         <Link
                             to="/catalog"

@@ -57,21 +57,21 @@ const Hero = ({
 
     return (
         <div className="relative text-[#ffffff] bg-radial from-[#121E36] to-[#202022] flex flex-col items-center">
-            <span className="mt-[150px] mb-[8px]">
+            <span className="mt-37 mb-2">
                 <Logo />
             </span>
-            <p className="text-[35px] mx-[auto] text-center w-[85%]">
+            <p className="text-sm mx-[auto] text-center w-[85%]">
                 Browse thousands of books, reserve a copy, and track your loans
                 -- all online. No late-night guesswork.
             </p>
-            <div className="pt-[75px] w-[85%]">
+            <div className="pt-16 w-[85%]">
                 <div className="flex w-full">
                     <input
                         type="search"
                         value={query}
                         onChange={e => setQuery(e.target.value)}
                         placeholder="Search by title, author or genre..."
-                        className="flex-1 text-[16px] border border[#808080] pt-[27px] pr-[35px] pb-[25px] pl-[25px] rounded-[20px] placeholder:pl-[40px] text-[28px]"
+                        className="flex-1 text-xs border border[#808080] px-5 py-6 rounded-xl"
                     />
                 </div>
                 {
@@ -121,17 +121,17 @@ const Hero = ({
                 }
             </div>
 
-            <ul className="flex justify-center gap-[2em] text-[26px] mt-[70px] list-none">
-                <li className="border border-[#808080] px-[30px] py-[20px] mb-[150px] rounded-[40px] text-[#808080]">
+            <ul className="flex justify-center gap-8 text-xs mt-17 list-none mb-37">
+                <li className="border border-[#808080] px-3 py-1 rounded-xl text-[#808080]">
                     Fiction
                 </li>
-                <li className="border border-[#808080] px-[30px] py-[20px] mb-[150px] rounded-[40px] text-[#808080]">
+                <li className="border border-[#808080] px-3 py-1 rounded-xl text-[#808080]">
                     Sci-Fi
                 </li>
-                <li className="border border-[#808080] px-[30px] py-[20px] mb-[150px] rounded-[40px] text-[#808080]">
+                <li className="border border-[#808080] px-3 py-1 rounded-xl text-[#808080]">
                     Tech
                 </li>
-                <li className="border border-[#808080] px-[30px] py-[20px] mb-[150px] rounded-[40px] text-[#808080]">
+                <li className="border border-[#808080] px-3 py-1 rounded-xl text-[#808080]">
                     Fantasy
                 </li>
             </ul>

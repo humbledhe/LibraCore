@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="flex gap-[1.5rem] flex-col items-center bg-[#181828] text-[25px] text-[#808080]">
-            <h3 className="text-[#ffffff] text-4xl font-bold mt-8">
+        <footer className="flex gap-5 flex-col items-center bg-[#181828] text-xs text-[#808080] mt-10">
+            <h3 className="text-[#ffffff] text-base font-bold mt-8">
                 Libra<span className="text-amber-500">Core</span>
             </h3>
             <nav>
-                <ul className="flex gap-[1.5rem] list-none">
+                <ul className="flex gap-5 list-none">
                     <li>
                         <Link
                             to="/catalog"

@@ -5,7 +5,7 @@ import Logo from "../../components/Logo.jsx";
 
 const Header = () => {
     return (
-        <header className="flex justify-between items-center text-[30px] mx-[30px] my-[50px]">
+        <header className="flex justify-between items-center text-sm mx-8 my-12">
             <Logo />
             <p>
                 Already a member?{" "}

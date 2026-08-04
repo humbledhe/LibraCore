@@ -6,7 +6,7 @@ import App from "./App.jsx";
 
 import eruda from "eruda";
 
-eruda.init();
+// eruda.init();
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
