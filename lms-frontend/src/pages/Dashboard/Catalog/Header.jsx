@@ -42,12 +42,10 @@ const Header = ({ setBooks }) => {
     }, [query]);
 
     return (
-        <>
-            <header className="mx-[2em] py-[2em] fixed top-0 left-0 w-full bg-white z-50">
-                <h1 className="text-4xl font-bold">Catalog</h1>
-                <Search setQuery={setQuery} />
-            </header>
-        </>
+        <header className="px-4 py-4 fixed top-0 left-0 w-full bg-white z-50">
+            <h1 className="text-base font-bold">Catalog</h1>
+            <Search setQuery={setQuery} />
+        </header>
     );
 };
 

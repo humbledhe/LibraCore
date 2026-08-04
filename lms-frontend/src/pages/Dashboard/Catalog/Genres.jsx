@@ -7,34 +7,40 @@ import React from "react";
 export default function Genres({ books }) {
     // return <h1 className="mt-[20em]">Hello</h1>;
     return (
-        <div className="mt-[20em] pt-[2em] mb-[3em] bg-[#F5F4F0]">
+        <div className="mt-40 pt-4">
             {books.map(book => (
                 <div
                     key={book.id}
-                    className="mx-[2em] mt-[1em] flex gap-8 border-none p-[2em] bg-white rounded-[20px] last:mb-[20em]"
+                    className="mx-4 mt-6 flex items-center gap-8 border-none p-8 bg-white rounded-xl last:mb-25"
                 >
-                    <div className="w-[100px]">
-                        <img src={book.image_links} />
+                    <div className="w-14">
+                        <img src={book.image_links} loading="lazy" />
                     </div>
                     <div className="w-full">
-                        <p className="text-4xl font-bold">{book.title}</p>
-                        <p className="text-[#808080] text-2xl mt-[0.5em]">
+                        <p className="text-base font-bold">{book.title}</p>
+                        <p className="text-[#808080] text-sm mt-1">
                             {book.authors}
                         </p>
-                        <p className="text-[#808080] text-2xl w-[85%]">
+                        <p className="text-[#808080] text-xs w-[85%]">
                             {book.subtitle}
                         </p>
-                        <div className="flex justify-between w-full items-center mt-[1em]">
+                        <div className="flex justify-between w-full items-center mt-2">
                             <div>
-                                <p className="text-[#6D2BD9] text-xl bg-[#F3E8FF] font-bold mt-[0.5em] py-[4px] px-[26px] rounded-[16px]">
+                                <p
+                                    className={
+                                        book.categories
+                                            ? "text-[#6D2BD9] text-xs bg-[#F3E8FF] font-bold mt-1 py-1 px-3 rounded-xl"
+                                            : ""
+                                    }
+                                >
                                     {book.categories}
                                 </p>
                             </div>
                             <div className="flex items-center gap-[3em]">
-                                <p>icon</p>
+                                {/* <p>icon</p> */}
                                 <Link
                                     to="/dashboard/my-library/Reading"
-                                    className="text-xl font-bold bg-[#6D28D9] text-white py-[16px] px-[32px] rounded-[14px]"
+                                    className="text-xs font-bold bg-[#6D28D9] text-white py-1 px-4 rounded-xl"
                                 >
                                     Read
                                 </Link>

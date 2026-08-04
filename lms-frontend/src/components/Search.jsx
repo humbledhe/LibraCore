@@ -16,7 +16,7 @@ const Search = ({ setQuery }) => {
             onChange={e => setQuery(e.target.value)}
             placeholder="Search books"
             ref={inputRef}
-            className="w-full bg-[#EFEEEA] text-3xl mb-[1em] text-[#8E949C] font-bold indent-[2em] border-none border-[#E2DDD2] mt-[2em] py-[1em] rounded-[20px] placeholder:text-[#A8ADB5] active:border-none"
+            className="w-full bg-[#EFEEEA] text-sm mb-10 text-[#8E949C] font-bold indent-5 border-none border-[#E2DDD2] mt-7 py-3 rounded-xl placeholder:text-[#A8ADB5] active:border-none"
         />
     );
 };

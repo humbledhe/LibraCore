@@ -14,33 +14,29 @@ const Footer = () => {
         <footer className="fixed bottom-0 left-0 bg-white w-full z-50">
             <div className="flex justify-around">
                 <NavLink to="/dashboard" className="flex flex-col items-center">
-                    <img src={home} alt="home" className="w-[100px]" />
-                    <p className="text-xl font-bold">Home</p>
+                    <img src={home} alt="home" className="w-10" />
+                    <p className="text-xs font-bold">Home</p>
                 </NavLink>
                 <NavLink
                     to="/dashboard/catalog"
                     className="flex flex-col items-center"
                 >
-                    <img src={catalog} alt="catalog" className="w-[100px]" />
-                    <p className="text-xl font-bold">Catalog</p>
+                    <img src={catalog} alt="catalog" className="w-10" />
+                    <p className="text-xs font-bold">Catalog</p>
                 </NavLink>
                 <NavLink
                     to="/dashboard/my-library/Reading"
                     className="flex flex-col items-center"
                 >
-                    <img
-                        src={myLibrary}
-                        alt="My Library"
-                        className="w-[100px]"
-                    />
-                    <p className="text-xl font-bold">My Library </p>
+                    <img src={myLibrary} alt="My Library" className="w-10" />
+                    <p className="text-xs font-bold">My Library </p>
                 </NavLink>
                 <NavLink
                     to="/dashboard/profile"
                     className="flex flex-col items-center"
                 >
-                    <img src={profile} alt="profile" className="w-[100px]" />
-                    <p className="text-xl font-bold">Profile</p>
+                    <img src={profile} alt="profile" className="w-10" />
+                    <p className="text-xs font-bold">Profile</p>
                 </NavLink>
             </div>
         </footer>

@@ -6,17 +6,17 @@ import mailbox from "../../../assets/mailbox.png";
 const ActiveLoans = () => {
     return (
         <section>
-            <h2 className="text-3xl font-bold mb-[1em]">Your Loans</h2>
-            <div className="flex flex-col items-center border-none bg-white rounded-[24px] py-[5em] w-[95%] mx-auto">
-                <img className="w-[100px]" src={mailbox} />
-                <p className="text-2xl font-bold">No active loans yet</p>
-                <p className="text-xl text-[#808080] w-[60%] text-center">
+            <h2 className="text-base font-bold mb-3">Your Loans</h2>
+            <div className="flex flex-col items-center border-none bg-white rounded-xl py-10 w-[95%] mx-auto">
+                <img className="w-9" src={mailbox} />
+                <p className="text-sm font-bold">No active loans yet</p>
+                <p className="text-xs text-[#808080] w-[75%] text-center">
                     You haven't borrowed any books yet. Browse the catalog and
                     reserve one -- collect it at the library desk
                 </p>
                 <Link
                     to="/dashboard/catalog"
-                    className="bg-[#C98A3A] py-[1em] px-[2em] text-white rounded-[16px] font-bold text-xl mt-[2em]"
+                    className="bg-[#C98A3A] py-1 px-6 text-white rounded-xl font-bold text-xs mt-2"
                 >
                     Browse Catalog
                 </Link>

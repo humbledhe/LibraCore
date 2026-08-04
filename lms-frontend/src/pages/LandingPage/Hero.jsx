@@ -22,7 +22,7 @@ const Hero = ({
 
     useEffect(() => {
         setError(null); // clear error before fetching
-
+        setBooks([]); // clear books before fetching
         // when the user stops typing for x seconds, run this code
         const delayDebounce = setTimeout(async () => {
             if (!query.trim()) return;
@@ -57,7 +57,7 @@ const Hero = ({
 
     return (
         <div className="relative text-[#ffffff] bg-radial from-[#121E36] to-[#202022] flex flex-col items-center">
-            <span className="mt-37 mb-2">
+            <span className="mt-25 mb-2">
                 <Logo />
             </span>
             <p className="text-sm mx-[auto] text-center w-[85%]">
@@ -77,7 +77,7 @@ const Hero = ({
                 {
                     // Displays the first instance of books on screen, if book exists
                     error && error.response?.status === 404 && query ? (
-                        <div className="absolute z-100 top-[35em] border border-white w-[85%] bg-white py-[3em] rounded-[20px] shadow-lg overflow-hidden">
+                        <div className="absolute z-100 top-0 border border-white w-[85%] bg-white py-[3em] rounded-xl shadow-lg overflow-hidden">
                             <p className="text-[#808080] text-center text-2xl">
                                 No search results for{" "}
                                 <span className="font-bold">{`"${query}"`}</span>
@@ -89,20 +89,20 @@ const Hero = ({
                         !showResults && (
                             <div
                                 key={books[0].id}
-                                className="absolute z-100 top-[35em] border border-white w-[85%] bg-white pt-[2em] pb-[7em] text-black rounded-[20px] shadow-lg overflow-hidden"
+                                className="absolute z-100 bottom-30 border border-white w-[85%] bg-white pt-5 pb-8 text-black rounded-xl shadow-lg overflow-hidden"
                             >
-                                <div className="flex items-center gap-[20px] flex-start mt-0">
+                                <div className="flex items-center gap-4 flex-start mt-0">
                                     <img
                                         src={books[0].image_links}
                                         alt="thumbnail"
-                                        className="w-[100px] h-[150px] rounded-[20px] ml-[3em]"
+                                        className="w-10 ml-8"
                                     />
 
                                     <div>
-                                        <p className="text-3xl font-bold">
+                                        <p className="text-base font-bold">
                                             {books[0].title}
                                         </p>
-                                        <p className="text-[#808080] text-2xl">
+                                        <p className="text-[#808080] text-sm">
                                             {books[0].authors}
                                         </p>
                                     </div>
@@ -110,7 +110,7 @@ const Hero = ({
 
                                 <p
                                     onClick={results}
-                                    className="absolute z-100 bg-[#E8E2D7] text-[#C58A3A] text-center bottom-0 w-full rounded-bl-[20px] rounded-br-[20px] py-[0.6em] text-3xl font-bold"
+                                    className="absolute z-100 bg-[#E8E2D7] text-[#C58A3A] text-center bottom-0 w-full rounded-bl-xl rounded-br-xl py-1 text-xs font-bold"
                                 >
                                     See all results for &ldquo;{query}
                                     &rdquo; →
